@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Absolute Insane Birthday</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:black;
+    color:white;
+}
+
+/* BACKGROUND FOTO */
+.bg-photo{
+    position:fixed;
+    inset:0;
+    background:url('FOTO-KAMU.jpg') center/cover no-repeat;
+    filter:brightness(0.35) blur(2px);
+    transform:scale(1.1);
+    z-index:-3;
+}
+
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at center, transparent 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.85) 100%);
+    z-index:-2;
+}
+
+/* STARS */
+.star{
+    position:absolute;
+    color:white;
+    animation:twinkle 2s infinite alternate;
+    pointer-events:none;
+}
+
+@keyframes twinkle{
+    from{opacity:.2; transform:scale(1);}
+    to{opacity:1; transform:scale(1.6);}
+}
+
+/* INTRO */
+#intro{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+}
+
+.gift{
+    width:190px;
+    height:190px;
+    background:linear-gradient(135deg,#ff4d6d,#ff006e);
+    border-radius:25px;
+    cursor:pointer;
+    position:relative;
+    box-shadow:0 0 40px #ff4d6d;
+    animation:bounce 1.5s infinite;
+}
+
+.gift::before{
+    content:'';
+    position:absolute;
+    width:40px;
+    height:190px;
+    background:white;
+    left:75px;
+}
+
+.gift::after{
+    content:'';
+    position:absolute;
+    width:190px;
+    height:40px;
+    background:white;
+    top:75px;
+}
+
+.tap{
+    margin-top:25px;
+    font-size:1.3rem;
+    animation:blink 1s infinite;
+}
+
+@keyframes bounce{
+    50%{transform:translateY(-15px);}
+}
+@keyframes blink{
+    50%{opacity:.4;}
+}
+
+/* MAIN CONTENT */
+#main{
+    display:none;
+    text-align:center;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:5;
+    width:90%;
+    max-width:900px;
+}
+
+.typing{
+    font-size:4.5rem;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:4px solid white;
+    width:0;
+    margin:auto;
+    animation:
+        typing 4s steps(25,end) forwards,
+        blink .7s infinite;
+}
+
+.name{
+    font-size:3.3rem;
+    margin-top:25px;
+    color:#ffd700;
+    text-shadow:
+        0 0 10px #ffd700,
+        0 0 20px #ffd700,
+        0 0 40px #ffae00,
+        0 0 80px #ffae00;
+    opacity:0;
+    animation:fadeIn 2s forwards;
+    animation-delay:4s;
+}
+
+.message{
+    margin-top:20px;
+    font-size:1.3rem;
+    opacity:0;
+    animation:fadeIn 2s forwards;
+    animation-delay:5s;
+    line-height:1.8;
+}
+
+/* PHOTO FRAME */
+.photo-frame{
+    width:220px;
+    height:220px;
+    margin:30px auto;
+    border-radius:50%;
+    border:5px solid rgba(255,255,255,.4);
+    box-shadow:0 0 35px rgba(255,255,255,.4);
+    overflow:hidden;
+    opacity:0;
+    animation:fadeInZoom 2s forwards;
+    animation-delay:6s;
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* CAKE */
+.cake{
+    width:170px;
+    height:110px;
+    background:#ff9f1c;
+    margin:30px auto;
+    border-radius:15px;
+    box-shadow:0 0 30px #ff9f1c;
+    position:relative;
+    opacity:0;
+    animation:fadeIn 2s forwards;
+    animation-delay:5.5s;
+}
+
+.candle{
+    width:15px;
+    height:50px;
+    background:white;
+    position:absolute;
+    left:77px;
+    top:-50px;
+}
+
+.flame{
+    width:20px;
+    height:20px;
+    background:gold;
+    border-radius:50%;
+    position:absolute;
+    top:-18px;
+    left:-2px;
+    box-shadow:0 0 25px gold;
+    animation:flicker .3s infinite alternate;
+}
+
+/* PARTICLES */
+.balloon,.confetti,.heart,.firework{
+    position:absolute;
+    pointer-events:none;
+}
+
+.balloon{
+    width:60px;
+    height:80px;
+    border-radius:50%;
+    bottom:-120px;
+    animation:floatUp linear infinite;
+}
+.balloon::after{
+    content:'';
+    width:2px;
+    height:70px;
+    background:white;
+    position:absolute;
+    top:80px;
+    left:50%;
+}
+
+.confetti{
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:fall linear infinite;
+}
+
+.heart{
+    color:#ff4d6d;
+    font-size:20px;
+    animation:floatHeart 6s linear infinite;
+}
+
+.firework{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    animation:explode 1s ease-out forwards;
+}
+
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+@keyframes fadeIn{
+    to{opacity:1;}
+}
+@keyframes fadeInZoom{
+    from{opacity:0; transform:scale(.6);}
+    to{opacity:1; transform:scale(1);}
+}
+@keyframes flicker{
+    to{transform:scale(1.25);}
+}
+@keyframes floatUp{
+    to{transform:translateY(-120vh) rotate(360deg); opacity:0;}
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(720deg);}
+}
+@keyframes floatHeart{
+    to{transform:translateY(-110vh); opacity:0;}
+}
+@keyframes explode{
+    from{transform:scale(1); opacity:1;}
+    to{transform:scale(8); opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-photo"></div>
+<div class="overlay"></div>
+
+<div id="intro">
+    <div class="gift" onclick="startMagic()"></div>
+    <div class="tap">✨ Tap To Open Surprise ✨</div>
+</div>
+
+<div id="main">
+    <div class="typing">🎉 Happy Birthday 🎉</div>
+
+    <div class="name">Chery Aprilia Saputri</div>
+
+    <div class="photo-frame">
+        <img src="FOTO-KAMU.jpg" alt="Birthday Photo">
+    </div>
+
+    <div class="cake">
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+    </div>
+
+    <div class="message">
+        Semoga panjang umur, sehat selalu,<br>
+        dipermudah segala urusan,<br>
+        dan semua impianmu tercapai ✨💖
+    </div>
+</div>
+
+<script>
+function startMagic(){
+    document.getElementById('intro').style.display='none';
+    document.getElementById('main').style.display='block';
+
+    createStars();
+    spawnBalloons();
+    spawnConfetti();
+    spawnHearts();
+    fireworksLoop();
+}
+
+/* STARS */
+function createStars(){
+    for(let i=0;i<70;i++){
+        let s=document.createElement('div');
+        s.className='star';
+        s.innerHTML='✦';
+        s.style.left=Math.random()*100+'vw';
+        s.style.top=Math.random()*100+'vh';
+        s.style.fontSize=(10+Math.random()*15)+'px';
+        s.style.animationDelay=Math.random()*2+'s';
+        document.body.appendChild(s);
+    }
+}
+
+function spawnBalloons(){
+    for(let i=0;i<35;i++){
+        let b=document.createElement('div');
+        b.className='balloon';
+        b.style.left=Math.random()*100+'vw';
+        b.style.background=`hsl(${Math.random()*360},100%,60%)`;
+        b.style.animationDuration=(5+Math.random()*6)+'s';
+        document.body.appendChild(b);
+    }
+}
+
+function spawnConfetti(){
+    for(let i=0;i<300;i++){
+        let c=document.createElement('div');
+        c.className='confetti';
+        c.style.left=Math.random()*100+'vw';
+        c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+        c.style.animationDuration=(2+Math.random()*4)+'s';
+        document.body.appendChild(c);
+    }
+}
+
+function spawnHearts(){
+    setInterval(()=>{
+        let h=document.createElement('div');
+        h.className='heart';
+        h.innerHTML='❤';
+        h.style.left=Math.random()*100+'vw';
+        h.style.bottom='-20px';
+        h.style.animationDuration=(4+Math.random()*3)+'s';
+        document.body.appendChild(h);
+
+        setTimeout(()=>h.remove(),7000);
+    },250);
+}
+
+function fireworksLoop(){
+    setInterval(()=>{
+        for(let i=0;i<10;i++){
+            let f=document.createElement('div');
+            f.className='firework';
+            f.style.left=(10+Math.random()*80)+'vw';
+            f.style.top=(10+Math.random()*50)+'vh';
+            f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+            document.body.appendChild(f);
+
+            setTimeout(()=>f.remove(),1000);
+        }
+    },1000);
+}
+
+/* Mouse Spark */
+document.addEventListener('mousemove',(e)=>{
+    let p=document.createElement('div');
+    p.className='firework';
+    p.style.left=e.pageX+'px';
+    p.style.top=e.pageY+'px';
+    p.style.background='white';
+    p.style.width='5px';
+    p.style.height='5px';
+    document.body.appendChild(p);
+
+    setTimeout(()=>p.remove(),500);
+});
+</script>
+
+</body>
+</html>
